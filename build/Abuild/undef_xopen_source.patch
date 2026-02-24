@@ -1,0 +1,11 @@
+diff --git a/bin/vterm-dump.c b/bin/vterm-dump.c
+index d67880a..0652f4b 100644
+--- a/bin/vterm-dump.c
++++ b/bin/vterm-dump.c
+@@ -1,5 +1,5 @@
+ // Require getopt(3)
+-#define _XOPEN_SOURCE
++#undef _XOPEN_SOURCE
+ 
+ #include <stdio.h>
+ #include <string.h>

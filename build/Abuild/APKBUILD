@@ -1,0 +1,33 @@
+# Alpine-Contributor: Daniel Sabogal <dsabogalcc@gmail.com>
+# Alpine-Maintainer: Jakub Jirutka <jakub@jirutka.cz>
+# Maintainer: Ethan Leir <eleir@qnx.com>
+pkgname=libvterm
+pkgver=0.3.3
+pkgrel=0
+pkgdesc="Abstract library implementation of a VT220/xterm/ECMA-48 terminal emulator"
+url="https://www.leonerd.org.uk/code/libvterm/"
+arch="all"
+license="MIT"
+makedepends="libtool perl"
+subpackages="$pkgname-static $pkgname-dev"
+source="$pkgname-$pkgver.tar.gz::https://www.leonerd.org.uk/code/libvterm/libvterm-$pkgver.tar.gz
+        undef_xopen_source.patch
+        "
+
+build() {
+    make PREFIX=/usr CC=gcc CFLAGS+=-D_QNX_SOURCE
+}
+
+check() {
+    make test
+}
+
+package() {
+    make PREFIX=/usr DESTDIR="$pkgdir/" install
+}
+
+
+sha512sums="
+0117f71988d2c3c1b5e46d0778ce491a8ab9033f3afc9a9905b6d52d0e2adb59ee101667826281470e4c9de5178cbe966f4ecb2c7673e9644c7ca3508491bb49  libvterm-0.3.3.tar.gz
+9fcf933f345612d20b032c17edd3ffa133bce148d44f81e9de8a5004c4b4e3f06ed58787ad0345d0d465d3765024925f9df8ad5fb83259abc01820df8aa718a9  undef_xopen_source.patch
+"
